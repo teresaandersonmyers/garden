@@ -1,7 +1,7 @@
 "use strict";
 
 function Plant(data) {
-	this.type = data.type;
+	this.name = data.name;
 	this.isSown = false;
 	this.isHarvested = false;
 	this.minWaterCountForHarvest = data.minWaterCountForHarvest;

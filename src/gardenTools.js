@@ -5,15 +5,18 @@ var gardenTools = function() {
 	var shovel = 'shoveling';
 	var weedSpray = 'spraying for weeds';
 
-	return {
-		prepareForPlanting: function() {
-			console.log(hoe);
-			console.log(shovel);
-		},
+	var prepareForPlanting = function() {
+		console.log(hoe);
+		console.log(shovel);
+	};
 
-		weed: function() {
-			console.log(weedSpray);
-		}
+	var weed = function() {
+		console.log(weedSpray);
+	};
+
+	return {
+		prepareForPlanting: prepareForPlanting,
+		weed: weed
 
 	}
 

@@ -1,6 +1,7 @@
 "use strict";
 
-var Garden = require('./garden.js'), Plant = require('./plant.js'), RSG = require('./RandomSeedGenerator'), GardenTools = require('./gardenTools');
+var Garden = require('./garden.js'), Plant = require('./plant.js'), RSG = require('./RandomSeedGenerator'), 
+	GardenTools = require('./gardenTools'), repoFactory = require('./repos/repoFactory');
 
 const readline = require('readline');
 
@@ -24,11 +25,11 @@ rl.question('What would you like to plant? ', (answer1) => {
 	  rl.close();
 
 	  var garden = new Garden();
-	  var plant = new Plant('${answer}', 5);
+	  var plant = new Plant({name: type, minWaterCountForHarvest: days});
 
 	  GardenTools.prepareForPlanting();
 
-	  console.log("Planted a " + type + " seed and will harvest in " + days + " days.");
+	  repoFactory.plant.save(plant);
 
 	  GardenTools.weed();
 
