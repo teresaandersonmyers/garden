@@ -1,12 +1,13 @@
-{ 
-	"scripts": { 
-		"test": "karma start test/my.conf.js" 
-	}, 
-	"devDependencies": { 
-		"jasmine-core": "^2.6.1", 
-		"karma": "^0.13.21", 
-		"karma-coverage": "^0.5.3", 
-		"karma-jasmine": "^0.3.6", 
-		"karma-chrome-launcher": "~0.1" 
-	} 
+{
+  "scripts": {
+    "test": "jasmine-node test/spec"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.6.1",
+    "jasmine-node": "^1.3.1",
+    "karma": "^0.13.21",
+    "karma-chrome-launcher": "~0.1",
+    "karma-coverage": "^0.5.3",
+    "karma-jasmine": "^0.3.6"
+  }
 }

@@ -1,70 +1,64 @@
 
-
 "use strict";
-module.exports = Garden;
-
 function Garden() {
-	var plants = [];
-	var isPlanted = false;
-	var isWatering = false;
+	this.plants = [];
+	this.isPlanted = false;
+	this.isWatering = false;
+}
 
-	return {
-		sow: function(plant) {
-			if (!plants) {
-				plants = [];
-			}
-			plants.push(plant);
-			plant.sow();
-			isPlanted = true;
-		},
+Garden.prototype.sow = function(plant) {
+	if (!this.plants) {
+		this.plants = [];
+	}
+	this.plants.push(plant);
+	plant.sow();
+	this.isPlanted = true;
+};
 
-		water: function() {
-			isWatering = true;
-			for (var i = 0; i < plants.length; i++) {
-				plants[i].water();
-			}
-		},
+Garden.prototype.water = function() {
+	this.isWatering = true;
+	for (var i = 0; i < this.plants.length; i++) {
+		this.plants[i].water();
+	}
+};
 
-		harvestAll: function() {
-			var harvestedPlants = [];
-			for (var i = plants.length - 1; i >= 0; i--) {
-				var plant = plants[i];
-				if (plant.harvest()) {
-					console.log(plant.name);
-					harvestedPlants.push(plant);
-					plants.splice(i, 1);
-				}
-			}
-
-			if (!plants.length) {
-				isPlanted = false;
-			}
-
-			return harvestedPlants.reverse();
-		},
-
-		harvestOne: function() {
-			for (var i = 0; i < plants.length; i++) {
-				var plant = plants[i];
-				if (plant.harvest()) {
-					console.log(plant.name);
-					plants.splice(i, 1);
-					return plant;
-				}
-			}
-		},
-
-		getIsWatering: function() {
-			return isWatering;
-		},
-
-		getIsPlanted: function() {
-			return isPlanted;
-		},
-
-		getPlants: function() {
-			return plants;
+Garden.prototype.harvestAll = function() {
+	var harvestedPlants = [];
+	for (var i = this.plants.length - 1; i >= 0; i--) {
+		var plant = this.plants[i];
+		if (plant.harvest()) {
+			harvestedPlants.push(plant);
+			this.plants.splice(i, 1);
 		}
 	}
 
+	if (!this.plants.length) {
+		this.isPlanted = false;
+	}
+
+	return harvestedPlants.reverse();
 };
+
+Garden.prototype.harvestOne = function() {
+	for (var i = 0; i < this.plants.length; i++) {
+		var plant = this.plants[i];
+		if (plant.harvest()) {
+			this.plants.splice(i, 1);
+			return plant;
+		}
+	}
+};
+
+Garden.prototype.getIsWatering = function() {
+	return this.isWatering;
+};
+
+Garden.prototype.getIsPlanted = function() {
+	return this.isPlanted;
+};
+
+Garden.prototype.getPlants = function() {
+	return this.plants;
+};
+
+module.exports = Garden;

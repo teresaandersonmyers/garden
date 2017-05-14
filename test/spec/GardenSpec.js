@@ -1,18 +1,27 @@
+if( typeof Garden === 'undefined' ) {
+	var Garden = require('../../src/garden.js');
+}
+
+if( typeof Plant === 'undefined') {
+	var Plant = require('../../src/plant.js');
+}
+
 describe("Garden", function() {
 	it("Adds a plant to the garden when a new plant is sown", function() {
 		var garden = new Garden();
-		var plant = new Plant("pea", 5);
+		var plant = new Plant({name: "pea", minWaterCountForHarvest: 5});
 		garden.sow(plant);
 
 		expect(garden.getPlants().length).toBe(1);
 		expect(plant.getIsSown()).toBe(true);
 	});
 
+
 	it("Can hold multiple plants", function() {
 		var garden = new Garden();
-		var plant1 = new Plant("pea", 5);
-		var plant2 = new Plant("carrot", 5);
-		var plant3 = new Plant("corn", 5);
+		var plant1 = new Plant({name: "pea", minWaterCountForHarvest: 5});
+		var plant2 = new Plant({name: "carrot", minWaterCountForHarvest: 5});
+		var plant3 = new Plant({name: "corn", minWaterCountForHarvest: 5});
 		garden.sow(plant1);
 		garden.sow(plant2);
 		garden.sow(plant3);
@@ -25,9 +34,9 @@ describe("Garden", function() {
 
 	it("Can harvest the most recent plant if it has been watered more than its minimum water to harvest count", function() {
 		var garden = new Garden();
-		var plant1 = new Plant("pea", 5);
-		var plant2 = new Plant("carrot", 5);
-		var plant3 = new Plant("corn", 5);
+		var plant1 = new Plant({name: "pea", minWaterCountForHarvest: 5});
+		var plant2 = new Plant({name: "carrot", minWaterCountForHarvest: 5});
+		var plant3 = new Plant({name: "corn", minWaterCountForHarvest: 5});
 		garden.sow(plant1);
 		garden.sow(plant2);
 		garden.sow(plant3);
@@ -51,7 +60,7 @@ describe("Garden", function() {
 
 	it("Cannot harvest a plant that has not been watered more than its minimum water to harvest count", function() {
 		var garden = new Garden();
-		var plant = new Plant("pea", 5);
+		var plant = new Plant({name: "pea", minWaterCountForHarvest: 5});
 		garden.sow(plant);
 
 		var harvestedPlant = garden.harvestOne();
@@ -64,7 +73,7 @@ describe("Garden", function() {
 
 	it("Is set back to not isPlanted if all of the plants are harvested", function() {
 		var garden = new Garden();
-		var plant = new Plant("pea", 5);
+		var plant = new Plant({name: "pea", minWaterCountForHarvest: 5});
 		garden.sow(plant);
 
 		garden.water();
@@ -86,9 +95,9 @@ describe("Garden", function() {
 
 	it("Cannot harvest the most recent plant if it has not been watered more than its minimum water to harvest count", function() {
 		var garden = new Garden();
-		var plant1 = new Plant("pea", 5);
-		var plant2 = new Plant("carrot", 5);
-		var plant3 = new Plant("corn", 5);
+		var plant1 = new Plant({name: "pea", minWaterCountForHarvest: 5});
+		var plant2 = new Plant({name: "carrot", minWaterCountForHarvest: 5});
+		var plant3 = new Plant({name: "corn", minWaterCountForHarvest: 5});
 		garden.sow(plant1);
 		garden.sow(plant2);
 		garden.sow(plant3);
@@ -108,11 +117,11 @@ describe("Garden", function() {
 		expect(harvestedPlant).toBe(undefined);
 	});
 
-	it("Can harvest the all plants that have been watered more than their minimum water to harvest count", function() {
+	it("Can harvest all of the plants that have been watered more than their minimum water to harvest count", function() {
 		var garden = new Garden();
-		var plant1 = new Plant("pea", 5);
-		var plant2 = new Plant("carrot", 5);
-		var plant3 = new Plant("corn", 5);
+		var plant1 = new Plant({name: "pea", minWaterCountForHarvest: 5});
+		var plant2 = new Plant({name: "carrot", minWaterCountForHarvest: 5});
+		var plant3 = new Plant({name: "corn", minWaterCountForHarvest: 5});
 		garden.sow(plant1);
 		garden.sow(plant2);
 		garden.sow(plant3);

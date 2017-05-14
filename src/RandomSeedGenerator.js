@@ -1,49 +1,47 @@
 "use strict"; 
-
-module.exports = {
-	RandomSeedGenerator: (function () { 
-		function createRandomSeedName(randomNumber) { 
-			return {
-				get randomSeed() {
-					var randomSeed = "";
-					switch(randomNumber) {
-						case 0:
-							randomSeed = 'onion';
-							break;
-						case 1:
-							randomSeed = 'turnip';
-							break;
-						case 2:
-							randomSeed = 'grape';
-							break;
-						case 3:
-							randomSeed = 'tomato';
-							break;
-						case 4:
-							randomSeed = 'potato';
-							break;
-						case 5:
-							randomSeed = 'corn';
-							break;
-						case 6:
-							randomSeed = 'pea';
-							break;
-						case 7:
-							randomSeed = 'lettuce';
-							break;
-						case 8:
-							randomSeed = 'pumpkin';
-							break;
-						case 9:
-							randomSeed = 'zucchini';
-							break;
-					}; 
-					return randomSeed;
-				}
+var RandomSeedGenerator = (function () { 
+	function createRandomSeed(randomNumber) {
+		return {
+			get randomSeed() {
+				var seed = "pepper";
+				switch(randomNumber) {
+					case 0:
+						seed = 'onion';
+						break;
+					case 1:
+						seed = 'turnip';
+						break;
+					case 2:
+						seed = 'grape';
+						break;
+					case 3:
+						seed = 'tomato';
+						break;
+					case 4:
+						seed = 'potato';
+						break;
+					case 5:
+						seed = 'corn';
+						break;
+					case 6:
+						seed = 'pea';
+						break;
+					case 7:
+						seed = 'lettuce';
+						break;
+					case 8:
+						seed = 'pumpkin';
+						break;
+					case 9:
+						seed = 'zucchini';
+						break;
+				}; 
+				return seed;
 			}
-		} 
-		return function () { 
-			return createRandomSeedName(Math.floor(Math.random() * 10)); 
-		}; 
-	})()
-}
+		}
+	}
+
+	return function () { return createRandomSeed(Math.floor(Math.random() * 10)); };
+})();
+
+module.exports = RandomSeedGenerator;
